@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import TiltCard from '../components/TiltCard';
+import { contact, getWhatsAppQuoteUrl } from '../config/contact';
 
 export default function HeroSection() {
   const textRef = useRef<HTMLDivElement>(null);
@@ -46,7 +47,7 @@ export default function HeroSection() {
           </p>
 
           <a
-            href="https://wa.me/91XXXXXXXXXX?text=Hi%20SafeDrive!%20I%20want%20a%20quote%20for%20my%20vehicle."
+            href={getWhatsAppQuoteUrl()}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-8 font-montserrat font-semibold text-[15px] text-white bg-coral px-8 py-3.5 rounded-full hover:bg-coral-hover hover:scale-[1.03] transition-all duration-200"
@@ -56,8 +57,8 @@ export default function HeroSection() {
 
           <p className="text-[13px] text-slate-400 mt-4">
             Ya call karein:{' '}
-            <a href="tel:+91XXXXXXXXXX" className="text-teal hover:underline">
-              +91-XXXXXXXXXX
+            <a href={contact.callHref} className="text-teal hover:underline">
+              {contact.callDisplay}
             </a>
           </p>
         </div>

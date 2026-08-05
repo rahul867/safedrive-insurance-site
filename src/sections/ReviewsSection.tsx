@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    quote: 'Pehle darr lagta tha online insurance se \u2014 lekin SafeDrive ne 5 minute mein policy bheji. Full trust!',
+    quote: 'Pehle darr lagta tha online insurance se - lekin SafeDrive ne 5 minute mein policy bheji. Full trust!',
     name: 'Rahul S.',
     location: 'Gurgaon',
   },
@@ -18,17 +18,17 @@ const testimonials = [
     location: 'Delhi',
   },
   {
-    quote: 'Zero Dep ka samajh nahi aata tha \u2014 inhone itna simple explain kiya ki bas click karke le liya.',
+    quote: 'Zero Dep ka samajh nahi aata tha - inhone itna simple explain kiya ki bas click karke le liya.',
     name: 'Amit K.',
     location: 'Noida',
   },
   {
-    quote: 'Renewal ka reminder aaya WhatsApp pe \u2014 ek click mein ho gaya. Kitna easy hai yaar!',
+    quote: 'Renewal ka reminder aaya WhatsApp pe - ek click mein ho gaya. Kitna easy hai yaar!',
     name: 'Sneha R.',
     location: 'Meerut',
   },
   {
-    quote: 'Price compare kiya Policybazaar pe \u2014 same rate yahan se liya aur help bhi mili.',
+    quote: 'Price compare kiya Policybazaar pe - same rate yahan se liya aur help bhi mili.',
     name: 'Vikram T.',
     location: 'Gurgaon',
   },
@@ -89,7 +89,7 @@ export default function ReviewsSection() {
           <SectionHeading
             label="REVIEWS"
             title="500+ Happy Riders"
-            body="Delhi-NCR aur Meerut ke customers ki feedback \u2014 yeh suniye unki zubaani."
+            body="Delhi-NCR aur Meerut ke customers ki feedback - yeh suniye unki zubaani."
           />
         </div>
 

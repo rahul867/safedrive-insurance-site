@@ -2,13 +2,14 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Check, Phone } from 'lucide-react';
+import { contact } from '../config/contact';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const features = [
   '24/7 claim support call',
   'Document preparation help',
-  'Garage coordination \u2014 cashless network',
+  'Garage coordination - cashless network',
   'Follow-up till settlement',
 ];
 
@@ -71,7 +72,7 @@ export default function ClaimAssistanceSection() {
             </h2>
 
             <p className="font-opensans text-base text-slate-500 leading-relaxed mt-4">
-              Insurance sirf policy kharidna nahi \u2014 claim time pe kaam aata hai. SafeDrive provides full claim assistance: documents se lekar garage coordination tak.
+              Insurance sirf policy kharidna nahi - claim time pe kaam aata hai. SafeDrive provides full claim assistance: documents se lekar garage coordination tak.
             </p>
 
             <ul className="mt-6 space-y-4">
@@ -86,7 +87,7 @@ export default function ClaimAssistanceSection() {
             </ul>
 
             <a
-              href="tel:+91XXXXXXXXXX"
+              href={contact.callHref}
               className="inline-flex items-center gap-2 mt-8 font-montserrat font-semibold text-[15px] text-white bg-coral px-8 py-3.5 rounded-full hover:bg-coral-hover hover:scale-[1.03] transition-all duration-200"
             >
               <Phone className="w-4 h-4" />

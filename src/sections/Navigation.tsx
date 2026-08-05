@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Shield, Menu, X } from 'lucide-react';
 import gsap from 'gsap';
+import { getWhatsAppQuoteUrl } from '../config/contact';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -67,7 +68,7 @@ export default function Navigation() {
         {/* CTA Button */}
         <div className="hidden md:block">
           <a
-            href="https://wa.me/91XXXXXXXXXX?text=Hi%20SafeDrive!%20I%20want%20a%20quote%20for%20my%20vehicle."
+            href={getWhatsAppQuoteUrl()}
             target="_blank"
             rel="noopener noreferrer"
             className="font-montserrat font-semibold text-sm text-white bg-teal px-6 py-2.5 rounded-full hover:bg-teal-hover hover:scale-[1.02] transition-all duration-200 inline-block"
@@ -101,7 +102,7 @@ export default function Navigation() {
               </a>
             ))}
             <a
-              href="https://wa.me/91XXXXXXXXXX?text=Hi%20SafeDrive!%20I%20want%20a%20quote%20for%20my%20vehicle."
+              href={getWhatsAppQuoteUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="font-montserrat font-semibold text-sm text-white bg-teal px-6 py-3 rounded-full text-center mt-2"

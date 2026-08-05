@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionHeading from '../components/SectionHeading';
+import { getWhatsAppQuoteUrl } from '../config/contact';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,17 +15,17 @@ const steps = [
   {
     number: '02',
     title: 'Instant Quote Milega',
-    description: '2 minutes mein aapko best premium options mil jaayenge \u2014 compare karein aur choose karein.',
+    description: '2 minutes mein aapko best premium options mil jaayenge - compare karein aur choose karein.',
   },
   {
     number: '03',
     title: 'Payment Karein',
-    description: 'Secure online payment karein \u2014 receipt instant mil jaayegi. Koi hidden charges nahi.',
+    description: 'Secure online payment karein - receipt instant mil jaayegi. Koi hidden charges nahi.',
   },
   {
     number: '04',
     title: 'Policy Delivered!',
-    description: 'Minutes mein policy document aapke WhatsApp pe \u2014 original, verifiable, ready to use.',
+    description: 'Minutes mein policy document aapke WhatsApp pe - original, verifiable, ready to use.',
   },
 ];
 
@@ -78,7 +79,7 @@ export default function HowItWorksSection() {
           <SectionHeading
             label="PROCESS"
             title="4 Steps Mein Policy Ready"
-            body="Itna easy hai ki aapko sochna nahi parega \u2014 bas details do, quote lo, policy lo!"
+            body="Itna easy hai ki aapko sochna nahi parega - bas details do, quote lo, policy lo!"
           />
         </div>
 
@@ -141,7 +142,7 @@ export default function HowItWorksSection() {
         {/* CTA */}
         <div className="text-center mt-16">
           <a
-            href="https://wa.me/91XXXXXXXXXX?text=Hi%20SafeDrive!%20I%20want%20a%20quote%20for%20my%20vehicle."
+            href={getWhatsAppQuoteUrl()}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block font-montserrat font-semibold text-[15px] text-white bg-teal px-8 py-3.5 rounded-full hover:bg-teal-hover hover:scale-[1.03] transition-all duration-200"

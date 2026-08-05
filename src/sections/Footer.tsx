@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Shield, MessageCircle, Mail, MapPin } from 'lucide-react';
+import { Shield, MessageCircle, Mail, MapPin, Phone } from 'lucide-react';
+import { contact } from '../config/contact';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -91,13 +92,22 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://wa.me/91XXXXXXXXXX"
+                  href={contact.whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 font-opensans text-sm text-white/70 hover:text-white transition-colors duration-200"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  +91-XXXXXXXXXX
+                  WhatsApp: {contact.whatsappDisplay}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={contact.callHref}
+                  className="flex items-center gap-2 font-opensans text-sm text-white/70 hover:text-white transition-colors duration-200"
+                >
+                  <Phone className="w-4 h-4" />
+                  Call: {contact.callDisplay}
                 </a>
               </li>
               <li>

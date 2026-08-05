@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Shield, Car, Bike, Star } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
+import { getWhatsAppQuoteUrl } from '../config/contact';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,24 +12,24 @@ const products = [
     icon: Shield,
     title: 'Third Party',
     subtitle: '(TP)',
-    price: '\u20B9XXX se shuru',
-    description: 'Legal requirement \u2014 doosri gaadi ya insaan ko hua nuksaan cover karta hai. Sabse affordable option.',
+    price: 'Rs. XXX se shuru',
+    description: 'Legal requirement - doosri gaadi ya insaan ko hua nuksaan cover karta hai. Sabse affordable option.',
     popular: false,
   },
   {
     icon: Car,
     title: 'Comprehensive',
     subtitle: '',
-    price: '\u20B9XXX se shuru',
-    description: 'Aapki gaadi + third party dono covered. Theft, accident, natural disaster \u2014 sab included. Best value for money.',
+    price: 'Rs. XXX se shuru',
+    description: 'Aapki gaadi + third party dono covered. Theft, accident, natural disaster - sab included. Best value for money.',
     popular: true,
   },
   {
     icon: Bike,
     title: 'Zero Dep',
     subtitle: '',
-    price: '\u20B9XXX se shuru',
-    description: 'Comprehensive ka super version \u2014 depreciation ke bina full claim amount milega. New car owners ke liye best.',
+    price: 'Rs. XXX se shuru',
+    description: 'Comprehensive ka super version - depreciation ke bina full claim amount milega. New car owners ke liye best.',
     popular: false,
   },
 ];
@@ -82,8 +83,8 @@ export default function ProductsSection() {
         <div className="section-heading">
           <SectionHeading
             label="HUMARE COVERS"
-            title="3 Plans \u2014 Sabke Liye Kuch"
-            body="Bike ho ya Car, TP se lekar Zero Dep tak \u2014 choose karo jo aapke budget aur safety needs ko suit kare."
+            title="3 Plans - Sabke Liye Kuch"
+            body="Bike ho ya Car, TP se lekar Zero Dep tak - choose karo jo aapke budget aur safety needs ko suit kare."
           />
         </div>
 
@@ -127,7 +128,7 @@ export default function ProductsSection() {
                 </p>
 
                 <a
-                  href="https://wa.me/91XXXXXXXXXX?text=Hi%20SafeDrive!%20I%20want%20a%20quote%20for%20"
+                  href={getWhatsAppQuoteUrl(`Hi SafeDrive! I want a quote for ${product.title}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`inline-block mt-6 font-montserrat font-semibold text-sm px-6 py-2.5 rounded-full border-2 transition-all duration-200 ${

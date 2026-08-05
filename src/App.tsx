@@ -8,7 +8,6 @@ import HowItWorksSection from './sections/HowItWorksSection';
 import ReviewsSection from './sections/ReviewsSection';
 import ClaimAssistanceSection from './sections/ClaimAssistanceSection';
 import Footer from './sections/Footer';
-import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,7 +32,6 @@ export default function App() {
         <ClaimAssistanceSection />
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 }

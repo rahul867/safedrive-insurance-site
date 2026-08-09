@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Shield, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import gsap from 'gsap';
 import { getWhatsAppQuoteUrl } from '../config/contact';
 
@@ -43,8 +43,12 @@ export default function Navigation() {
     >
       <div className="max-w-[1200px] mx-auto h-full flex items-center justify-between px-4 md:px-6">
         {/* Logo */}
-        <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="flex items-center gap-2">
-          <Shield className="w-8 h-8 text-teal" strokeWidth={2} />
+        <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="flex items-center gap-2.5">
+          <img
+            src="/safedrive-logo.png"
+            alt="SafeDrive Insurance Logo"
+            className="w-10 h-10 object-contain rounded-lg shadow-sm"
+          />
           <div className="flex flex-col">
             <span className="font-montserrat font-bold text-lg text-teal-dark leading-tight">SafeDrive</span>
             <span className="font-opensans text-[11px] text-slate-400 leading-tight">Ride ho jaaye sure!</span>

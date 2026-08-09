@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Shield, MessageCircle, Mail, MapPin, Phone } from 'lucide-react';
+import { MessageCircle, Mail, MapPin, Phone } from 'lucide-react';
 import { contact } from '../config/contact';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -52,8 +52,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
           {/* Brand Column */}
           <div className="footer-col">
-            <div className="flex items-center gap-2 mb-3">
-              <Shield className="w-8 h-8 text-white" strokeWidth={2} />
+            <div className="flex items-center gap-2.5 mb-3">
+              <img
+                src="/safedrive-logo.png"
+                alt="SafeDrive Insurance Logo"
+                className="w-10 h-10 object-contain rounded-lg bg-white p-0.5 shadow-sm"
+              />
               <span className="font-montserrat font-bold text-lg text-white">SafeDrive</span>
             </div>
             <p className="font-opensans text-sm text-white/70 mb-4">

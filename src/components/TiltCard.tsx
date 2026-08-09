@@ -133,7 +133,7 @@ export default function TiltCard() {
         {/* Front Face */}
         <div className="card-face card-front">
           <span className="absolute top-4 left-4 text-[10px] font-montserrat font-semibold uppercase tracking-wider text-white/80 z-10">
-            POLICYBAAZAR POSP
+            POLICYBAZAAR POSP
           </span>
           <div className="flex flex-col items-center gap-3 z-10">
             <Shield className="w-12 h-12 text-white" strokeWidth={1.5} />

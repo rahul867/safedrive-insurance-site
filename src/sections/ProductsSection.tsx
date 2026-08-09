@@ -12,7 +12,8 @@ const products = [
     icon: Shield,
     title: 'Third Party',
     subtitle: '(TP)',
-    price: 'Rs. XXX se shuru',
+    price: 'Sabse kam premium',
+    bestFor: 'Purani gaadi ya sirf legal requirement poori karni ho',
     description: 'Legal requirement - doosri gaadi ya insaan ko hua nuksaan cover karta hai. Sabse affordable option.',
     popular: false,
   },
@@ -20,7 +21,8 @@ const products = [
     icon: Car,
     title: 'Comprehensive',
     subtitle: '',
-    price: 'Rs. XXX se shuru',
+    price: 'Sabse zyada choose kiya jaane wala',
+    bestFor: '3-8 saal purani gaadi, daily use',
     description: 'Aapki gaadi + third party dono covered. Theft, accident, natural disaster - sab included. Best value for money.',
     popular: true,
   },
@@ -28,7 +30,8 @@ const products = [
     icon: Bike,
     title: 'Zero Dep',
     subtitle: '',
-    price: 'Rs. XXX se shuru',
+    price: 'Full claim, bina katauti',
+    bestFor: 'Nayi gaadi (0-5 saal) ya premium model',
     description: 'Comprehensive ka super version - depreciation ke bina full claim amount milega. New car owners ke liye best.',
     popular: false,
   },
@@ -119,8 +122,13 @@ export default function ProductsSection() {
                   <span className="text-sm text-slate-400 font-montserrat">{product.subtitle}</span>
                 )}
 
-                <p className="font-montserrat font-bold text-2xl text-teal mt-3">
+                <p className="font-montserrat font-bold text-lg text-teal mt-3">
                   {product.price}
+                </p>
+
+                <p className="font-opensans text-[13px] text-slate-400 mt-2">
+                  <span className="font-semibold text-slate-500">Kiske liye sahi hai: </span>
+                  {product.bestFor}
                 </p>
 
                 <p className="font-opensans text-[15px] text-slate-500 leading-relaxed mt-4">

@@ -112,11 +112,11 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:contact@safedrive.in"
+                  href="mailto:contact@safedriveinsurance.in"
                   className="flex items-center gap-2 font-opensans text-sm text-white/70 hover:text-white transition-colors duration-200"
                 >
                   <Mail className="w-4 h-4" />
-                  contact@safedrive.in
+                  contact@safedriveinsurance.in
                 </a>
               </li>
               <li className="flex items-center gap-2 font-opensans text-sm text-white/70">

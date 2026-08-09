@@ -9,14 +9,21 @@ export default function HeroSection() {
   useEffect(() => {
     if (!textRef.current) return;
     const children = textRef.current.children;
-    gsap.from(children, {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power2.out',
-      delay: 0.3,
-    });
+    // fromTo (not from) so content always ends visible even if the
+    // animation is interrupted or rAF is throttled in a background tab.
+    gsap.fromTo(
+      children,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power2.out',
+        delay: 0.3,
+        clearProps: 'opacity,transform',
+      }
+    );
   }, []);
 
   return (

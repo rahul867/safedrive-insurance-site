@@ -39,10 +39,15 @@ export default function Footer() {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+    // Section links only exist on the homepage. On other pages (e.g. /careers)
+    // fall through to a normal navigation back to the homepage anchor.
     const el = document.querySelector(href);
     if (el) {
+      e.preventDefault();
       el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      e.preventDefault();
+      window.location.href = `/${href}`;
     }
   };
 
@@ -64,7 +69,7 @@ export default function Footer() {
               Ride ho jaaye sure!
             </p>
             <p className="font-opensans text-[13px] text-white/60 max-w-[280px] leading-relaxed">
-              Gurgaon, Delhi-NCR & Meerut mein trusted bike and car insurance. POSP — Policybazaar.
+              Gurgaon, Delhi-NCR & Meerut mein trusted bike and car insurance. Authorized agent with Policybazaar.
             </p>
           </div>
 
@@ -85,6 +90,14 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/careers"
+                  className="font-opensans text-sm text-white/70 hover:text-white transition-colors duration-200"
+                >
+                  Careers
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -137,7 +150,7 @@ export default function Footer() {
             SafeDrive Insurance. All rights reserved.
           </p>
           <p className="font-opensans text-[13px] text-white/50">
-            POSP under Policybazaar
+            Authorized Insurance Agent with Policybazaar
           </p>
         </div>
       </div>

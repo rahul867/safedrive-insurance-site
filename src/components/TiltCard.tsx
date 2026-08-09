@@ -1,92 +1,11 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { Shield, MousePointerClick, MessageCircle } from 'lucide-react';
 
-class GyroTilt {
-  card: HTMLElement;
-  bounds: DOMRect | null = null;
-  centerX = 0;
-  centerY = 0;
-  mouseX = 0;
-  mouseY = 0;
-  currentX = 0;
-  currentY = 0;
-  targetX = 0;
-  targetY = 0;
-  rafId: number | null = null;
-
-  constructor(cardElement: HTMLElement) {
-    this.card = cardElement;
-    this.reset();
-  }
-
-  reset() {
-    this.mouseX = 0;
-    this.mouseY = 0;
-    this.currentX = 0;
-    this.currentY = 0;
-    this.targetX = 0;
-    this.targetY = 0;
-    this.rafId = requestAnimationFrame(() => this.update());
-  }
-
-  updateBounds() {
-    this.bounds = this.card.getBoundingClientRect();
-    this.centerX = this.bounds.left + this.bounds.width / 2;
-    this.centerY = this.bounds.top + this.bounds.height / 2;
-  }
-
-  onMouseMove(e: MouseEvent) {
-    this.updateBounds();
-    this.mouseX = e.clientX;
-    this.mouseY = e.clientY;
-    this.targetY = ((this.mouseX - this.centerX) / (window.innerWidth / 2)) * 15;
-    this.targetX = -((this.mouseY - this.centerY) / (window.innerHeight / 2)) * 15;
-  }
-
-  update() {
-    this.currentX += (this.targetX - this.currentX) * 0.1;
-    this.currentY += (this.targetY - this.currentY) * 0.1;
-    this.card.style.transform = `rotateX(${this.currentX}deg) rotateY(${this.currentY}deg)`;
-    this.rafId = requestAnimationFrame(() => this.update());
-  }
-
-  destroy() {
-    if (this.rafId) {
-      cancelAnimationFrame(this.rafId);
-    }
-  }
-
-  getCurrentX() {
-    return this.currentX;
-  }
-
-  getCurrentY() {
-    return this.currentY;
-  }
-}
-
 export default function TiltCard() {
-  const sceneRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const gyroRef = useRef<GyroTilt | null>(null);
-  const isFlippedRef = useRef(false);
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    gyroRef.current?.onMouseMove(e);
-  }, []);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const handleClick = useCallback(() => {
-    if (!cardRef.current || !gyroRef.current) return;
-    isFlippedRef.current = !isFlippedRef.current;
-    const isFlipped = isFlippedRef.current;
-    const currentX = gyroRef.current.getCurrentX();
-    const currentY = gyroRef.current.getCurrentY();
-    cardRef.current.style.transform = `rotateX(${currentX}deg) rotateY(${currentY + (isFlipped ? 180 : 0)}deg)`;
-    if (isFlipped) {
-      cardRef.current.classList.add('flipped');
-    } else {
-      cardRef.current.classList.remove('flipped');
-    }
+    setIsFlipped((prev) => !prev);
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -96,29 +15,8 @@ export default function TiltCard() {
     }
   }, [handleClick]);
 
-  useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    const gyro = new GyroTilt(card);
-    gyroRef.current = gyro;
-
-    document.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      gyro.destroy();
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [handleMouseMove]);
-
   return (
     <div
-      ref={sceneRef}
       className="card-scene"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -129,11 +27,11 @@ export default function TiltCard() {
       <div className="sphere-1 light-sphere" />
       <div className="sphere-2 light-sphere" />
       <div className="sphere-3 light-sphere" />
-      <div ref={cardRef} className="card">
+      <div className={`card${isFlipped ? ' flipped' : ''}`}>
         {/* Front Face */}
         <div className="card-face card-front">
           <span className="absolute top-4 left-4 text-[10px] font-montserrat font-semibold uppercase tracking-wider text-white/80 z-10">
-            POLICYBAZAAR POSP
+            Authorized Insurance Agent with Policybazaar
           </span>
           <div className="flex flex-col items-center gap-3 z-10">
             <Shield className="w-12 h-12 text-white" strokeWidth={1.5} />

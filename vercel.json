@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "images": {
+    "sizes": [640, 828, 1200],
+    "formats": ["image/webp"],
+    "minimumCacheTTL": 2678400
+  },
   "headers": [
     {
       "source": "/(.*)",

@@ -9,6 +9,7 @@ const navLinks = [
   { label: 'How It Works', href: '#how-it-works' },
   { label: 'Reviews', href: '#reviews' },
   { label: 'Claim Help', href: '#claim-help' },
+  { label: 'Blog', href: '/blog' },
 ];
 
 export default function Navigation() {
@@ -28,8 +29,12 @@ export default function Navigation() {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
     setMobileOpen(false);
+
+    // Links to other pages (e.g. /blog) navigate normally.
+    if (!href.startsWith('#')) return;
+
+    e.preventDefault();
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });

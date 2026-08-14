@@ -92,10 +92,26 @@ export default function Footer() {
               ))}
               <li>
                 <a
+                  href="/blog"
+                  className="font-opensans text-sm text-white/70 hover:text-white transition-colors duration-200"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a
                   href="/careers"
                   className="font-opensans text-sm text-white/70 hover:text-white transition-colors duration-200"
                 >
                   Careers
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/privacy"
+                  className="font-opensans text-sm text-white/70 hover:text-white transition-colors duration-200"
+                >
+                  Privacy Policy
                 </a>
               </li>
             </ul>

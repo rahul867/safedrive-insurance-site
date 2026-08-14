@@ -1,0 +1,60 @@
+media:
+  input: public/blog/media
+  output: /blog/media
+  extensions: [jpg, jpeg, png, webp, gif, svg]
+
+content:
+  - name: posts
+    label: Blog Posts
+    type: collection
+    path: content/blog
+    view:
+      fields: [title, date, category, draft]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title (post ka naam)
+        type: string
+        required: true
+        description: "Google me yahi dikhega. 60 characters ke aas-paas rakhein."
+
+      - name: description
+        label: Short summary
+        type: text
+        required: true
+        description: "2 lines me post ka saar. Google search me title ke neeche yahi dikhta hai."
+
+      - name: date
+        label: Date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+
+      - name: category
+        label: Category
+        type: select
+        options:
+          values: ["Kaam Ki Baat", "News", "Bike Insurance", "Car Insurance", "Claim Help"]
+
+      - name: image
+        label: Cover image
+        type: image
+        description: "Post ke upar dikhne wali photo. Site apne aap chhota kar degi."
+
+      - name: imageAlt
+        label: Image description
+        type: string
+        description: "Photo me kya hai - ek line me. Google ke liye zaroori hai."
+
+      - name: draft
+        label: Draft (abhi publish na karein)
+        type: boolean
+        default: false
+
+      - name: body
+        label: Post content
+        type: rich-text

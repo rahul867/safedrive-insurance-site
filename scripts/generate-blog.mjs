@@ -197,7 +197,7 @@ function pageShell({ title, description, canonical, ogImage, jsonLd, body }) {
     <title>${escapeHtml(title)}</title>
     <meta name="description" content="${escapeHtml(description)}" />
     <link rel="canonical" href="${escapeHtml(canonical)}" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#0F766E" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

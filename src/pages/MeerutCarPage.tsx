@@ -227,6 +227,42 @@ export default function MeerutCarPage() {
         </div>
       </section>
 
+      {/* Maruti Suzuki Renewal Special */}
+      <section className="py-12 bg-white border-b border-teal/15">
+        <div className="max-w-[1000px] mx-auto px-4 md:px-6">
+          <div className="bg-gradient-to-br from-teal-dark to-teal text-white rounded-3xl p-8 md:p-10 shadow-lg relative overflow-hidden">
+            <div className="max-w-2xl">
+              <span className="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-bold uppercase tracking-wider mb-3">
+                Meerut Special &bull; Maruti Suzuki Hub
+              </span>
+              <h3 className="font-montserrat font-bold text-2xl md:text-3xl leading-snug">
+                Maruti Swift, Dzire, Baleno ya Brezza? Showroom Se 40% Tak Sasta Renew Karein!
+              </h3>
+              <p className="font-opensans text-sm text-white/90 mt-3 leading-relaxed">
+                Showroom ke mehnge renewal quote ke bajay wahi same top companies (ICICI Lombard, Tata AIG, HDFC ERGO) ki policy discounted rate par paayein. Meerut ke sabhi Maruti Arena aur Nexa body shops par 100% cashless approval.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-4">
+                <a
+                  href={getWhatsAppQuoteUrl('Hi Rahul! Meri Maruti car ka renewal quote nikaal kar bhej dijiye. Showroom se compare karna hai.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-montserrat font-bold text-xs md:text-sm text-teal-dark bg-white px-6 py-3.5 rounded-full hover:bg-mint transition-all shadow-md"
+                >
+                  <MessageCircle className="w-4 h-4 text-coral" />
+                  Maruti Renewal Quote WhatsApp Karein
+                </a>
+                <a
+                  href="/blog/maruti-car-insurance-renewal-meerut"
+                  className="inline-flex items-center gap-1.5 font-montserrat font-semibold text-xs md:text-sm text-white hover:text-mint underline py-3.5"
+                >
+                  Read: Dealer vs SafeDrive Guide &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Zero Dep vs Standard Comparison */}
       <section className="py-16 bg-mint/20 border-y border-teal/15">
         <div className="max-w-[1100px] mx-auto px-4 md:px-6">

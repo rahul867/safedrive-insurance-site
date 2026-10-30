@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import TiltCard from '../components/TiltCard';
 import { contact, getWhatsAppQuoteUrl } from '../config/contact';
+import { ShieldCheck, Zap, Award, Phone, MessageCircle } from 'lucide-react';
 
 export default function HeroSection() {
   const textRef = useRef<HTMLDivElement>(null);
@@ -29,19 +30,21 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-[100dvh] flex items-center bg-white overflow-hidden"
+      className="relative min-h-[92dvh] flex items-center bg-white overflow-hidden pt-20 md:pt-0"
       style={{
-        background: 'radial-gradient(ellipse 80% 60% at 70% 50%, rgba(20, 184, 166, 0.08) 0%, transparent 100%)',
+        background:
+          'radial-gradient(circle at 18% 30%, rgba(20, 184, 166, 0.08) 0%, transparent 45%), radial-gradient(circle at 82% 45%, rgba(20, 184, 166, 0.08) 0%, transparent 45%)',
       }}
     >
-      <div className="max-w-[1200px] mx-auto w-full px-4 md:px-6 py-24 md:py-0 flex flex-col md:flex-row items-center">
-        {/* Text Content */}
-        <div ref={textRef} className="w-full md:w-1/2 md:max-w-[520px] text-center md:text-left z-20">
-          <span className="font-montserrat font-semibold text-xs uppercase tracking-[0.12em] text-teal mb-4 block">
-            SAFEDRIVE INSURANCE
-          </span>
+      <div className="max-w-[1200px] mx-auto w-full px-4 md:px-6 py-12 md:py-16 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-8">
+        {/* Left Column: Text & Trust Anchors */}
+        <div ref={textRef} className="w-full md:w-1/2 md:max-w-[530px] text-center md:text-left z-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal/10 border border-teal/20 text-teal text-xs font-bold uppercase tracking-wider mb-5">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            Fastest Motor Insurance &bull; Gurgaon &bull; Delhi-NCR &bull; Meerut
+          </div>
 
-          <h1 className="font-montserrat font-bold text-4xl md:text-5xl leading-[1.1] text-teal-dark">
+          <h1 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-[46px] leading-[1.12] text-teal-dark">
             Bike & Car Insurance
             <br />
             <span className="text-teal">Jo Minutes Mein Mile,</span>
@@ -49,36 +52,68 @@ export default function HeroSection() {
             Days Mein Nahi!
           </h1>
 
-          <p className="font-opensans text-lg text-slate-500 mt-6 max-w-[440px] mx-auto md:mx-0 leading-relaxed">
-            Third Party se Zero Dep tak — Gurgaon, Delhi-NCR & Meerut mein instant policy with claim assistance.
+          <p className="font-opensans text-base md:text-lg text-slate-600 mt-5 leading-relaxed">
+            Third Party se Zero Dep tak — instant policy on WhatsApp across 15+ top insurers, 90-day NCB retention aur local cashless claim assistance.
           </p>
 
-          <a
-            href={getWhatsAppQuoteUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block mt-8 font-montserrat font-semibold text-[15px] text-white bg-coral px-8 py-3.5 rounded-full hover:bg-coral-hover hover:scale-[1.03] transition-all duration-200"
-          >
-            WhatsApp pe Quote Lein
-          </a>
-
-          <p className="text-[13px] text-slate-400 mt-4">
-            Ya call karein:{' '}
-            <a href={contact.callHref} className="text-teal hover:underline">
-              {contact.callDisplay}
+          <div className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-3.5">
+            <a
+              href={getWhatsAppQuoteUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 font-montserrat font-bold text-sm text-white bg-coral px-7 py-3.5 rounded-full hover:bg-coral-hover hover:scale-[1.02] shadow-lg transition-all duration-200"
+            >
+              <MessageCircle className="w-4 h-4" />
+              WhatsApp pe Quote Lein
             </a>
-          </p>
+
+            <a
+              href={contact.callHref}
+              className="inline-flex items-center justify-center gap-2 font-montserrat font-semibold text-sm text-teal-dark bg-mint/50 border border-teal/20 px-6 py-3.5 rounded-full hover:bg-mint transition-all duration-200"
+            >
+              <Phone className="w-4 h-4 text-teal" />
+              Call: {contact.callDisplay}
+            </a>
+          </div>
+
+          {/* Micro Trust Stats to visually ground the left side */}
+          <div className="mt-8 pt-6 border-t border-teal/15 flex items-center justify-center md:justify-start gap-6 sm:gap-8">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-teal/10 text-teal flex items-center justify-center flex-shrink-0">
+                <Zap className="w-4 h-4" />
+              </div>
+              <div className="text-left">
+                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">2 Mins</span>
+                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Digital Policy</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-teal/10 text-teal flex items-center justify-center flex-shrink-0">
+                <ShieldCheck className="w-4 h-4" />
+              </div>
+              <div className="text-left">
+                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">100% Cashless</span>
+                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Local Garages</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-teal/10 text-teal flex items-center justify-center flex-shrink-0">
+                <Award className="w-4 h-4" />
+              </div>
+              <div className="text-left">
+                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">Up to 50%</span>
+                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">NCB Discount</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* 3D Tilt Card - Desktop */}
-        <div className="hidden md:block md:w-1/2">
+        {/* Right Column: 3D Tilt Card centered within its 50% width */}
+        <div className="w-full md:w-1/2 flex items-center justify-center relative py-4 md:py-0">
           <TiltCard />
         </div>
-      </div>
-
-      {/* Mobile Card */}
-      <div className="md:hidden w-full flex justify-center pb-16">
-        <TiltCard />
       </div>
     </section>
   );

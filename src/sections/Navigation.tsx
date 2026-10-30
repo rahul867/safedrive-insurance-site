@@ -4,14 +4,12 @@ import gsap from 'gsap';
 import { getWhatsAppQuoteUrl } from '../config/contact';
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
   { label: 'Products', href: '#products' },
   { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Meerut Hub', href: '/meerut' },
   { label: 'Reviews', href: '#reviews' },
+  { label: 'Blog & Rates', href: '/blog' },
   { label: 'Claim Help', href: '#claim-help' },
-  { label: 'Meerut', href: '/meerut' },
-  { label: 'Guides', href: '#guides' },
-  { label: 'Blog', href: '/blog' },
 ];
 
 export default function Navigation() {
@@ -50,7 +48,7 @@ export default function Navigation() {
     >
       <div className="max-w-[1200px] mx-auto h-full flex items-center justify-between px-4 md:px-6">
         {/* Logo */}
-        <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="flex items-center gap-2.5">
+        <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="flex items-center gap-2.5 flex-shrink-0">
           <img
             src="/safedrive-logo.png"
             alt="SafeDrive Insurance Logo"
@@ -62,14 +60,14 @@ export default function Navigation() {
           </div>
         </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Nav - Centered */}
+        <div className="hidden md:flex items-center justify-center gap-6 lg:gap-7 flex-1 px-4 lg:px-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="font-montserrat font-semibold text-sm text-ink hover:text-teal transition-colors duration-200"
+              className="font-montserrat font-semibold text-sm text-ink hover:text-teal transition-colors duration-200 whitespace-nowrap"
             >
               {link.label}
             </a>
@@ -77,7 +75,7 @@ export default function Navigation() {
         </div>
 
         {/* CTA Button */}
-        <div className="hidden md:block">
+        <div className="hidden md:block flex-shrink-0">
           <a
             href={getWhatsAppQuoteUrl()}
             target="_blank"

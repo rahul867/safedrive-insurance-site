@@ -478,6 +478,7 @@ function writeSitemap(posts) {
   const urls = [
     { loc: `${SITE}/`, priority: '1.0', changefreq: 'daily', lastmod: today },
     { loc: `${SITE}/meerut`, priority: '0.95', changefreq: 'daily', lastmod: today },
+    { loc: `${SITE}/meerut/car-insurance`, priority: '0.95', changefreq: 'daily', lastmod: today },
     { loc: `${SITE}/meerut/expired-insurance-renewal`, priority: '0.9', changefreq: 'daily', lastmod: today },
     { loc: `${SITE}/meerut/zero-dep-third-party-rates`, priority: '0.9', changefreq: 'daily', lastmod: today },
     { loc: `${SITE}/blog`, priority: '0.9', changefreq: 'daily', lastmod: today },

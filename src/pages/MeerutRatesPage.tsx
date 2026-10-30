@@ -7,6 +7,8 @@ import {
   Wrench,
   Check,
   X,
+  Car,
+  Bike,
 } from 'lucide-react';
 import Footer from '../sections/Footer';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
@@ -43,6 +45,37 @@ const twoWheelerRates = [
   },
 ];
 
+const fourWheelerRates = [
+  {
+    cc: 'Less than 1,000 cc',
+    models: 'Alto 800, Alto K10, Kwid, S-Presso, Celerio, WagonR 1.0',
+    tpRate: '₹2,094',
+    totalWithGst: '₹2,471',
+    fineSaved: 'Small family hatchbacks',
+  },
+  {
+    cc: '1,000 cc to 1,500 cc',
+    models: 'Swift, Dzire, Baleno, i20, Creta (1.5L), Brezza, Nexon, Venue, Ertiga',
+    tpRate: '₹3,416',
+    totalWithGst: '₹4,031',
+    fineSaved: 'Most popular cars in Meerut',
+  },
+  {
+    cc: 'Exceeding 1,500 cc',
+    models: 'Scorpio-N, XUV700, Thar, Fortuner, Innova Crysta, Safari, Harrier',
+    tpRate: '₹7,897',
+    totalWithGst: '₹9,318',
+    fineSaved: 'SUVs & Luxury cars',
+  },
+  {
+    cc: 'Electric Cars (EVs)',
+    models: 'Tata Tiago EV, Nexon EV, Punch EV, MG ZS EV',
+    tpRate: '₹1,780 to ₹2,904',
+    totalWithGst: '₹2,100 to ₹3,427',
+    fineSaved: 'EV government subsidy slab',
+  },
+];
+
 const depreciationComparison = [
   { part: 'Plastic & Rubber Bumper', standard: '50% katauti (Aadhe paise aapke)', zeroDep: '0% katauti (100% company degi)' },
   { part: 'Headlights & Taillights', standard: '50% katauti', zeroDep: '100% full replacement covered' },
@@ -72,6 +105,7 @@ const faqs = [
 
 export default function MeerutRatesPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [vehicleType, setVehicleType] = useState<'car' | 'bike'>('car');
 
   const toggleFaq = (idx: number) => {
     setOpenFaq(openFaq === idx ? null : idx);
@@ -145,43 +179,91 @@ export default function MeerutRatesPage() {
         </div>
       </section>
 
-      {/* Two-Wheeler Rate Table */}
+      {/* Official Rate Table (Cars & Bikes Toggle) */}
       <section className="py-16 bg-white">
         <div className="max-w-[1100px] mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8">
             <span className="text-xs font-bold text-teal uppercase tracking-wider block mb-2">OFFICIAL MANDATED RATES</span>
             <h2 className="font-montserrat font-bold text-2xl md:text-3xl text-teal-dark">
-              Bike Third Party Insurance Rate Chart 2026
+              {vehicleType === 'car' ? 'Car' : 'Bike'} Third Party Insurance Rate Chart 2026
             </h2>
             <p className="font-opensans text-slate-500 text-sm mt-2">
               IRDAI dwara fix kiye gaye government rates (sabhi insurance companies par lagu)
             </p>
           </div>
 
+          {/* Vehicle Selector Tabs */}
+          <div className="flex justify-center items-center gap-3 mb-10">
+            <button
+              type="button"
+              onClick={() => setVehicleType('car')}
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-montserrat font-semibold text-sm transition-all ${
+                vehicleType === 'car'
+                  ? 'bg-teal text-white shadow-md scale-105'
+                  : 'bg-mint/40 text-teal-dark hover:bg-mint/60'
+              }`}
+            >
+              <Car className="w-4 h-4" />
+              Four-Wheeler (Car Rate Chart)
+            </button>
+            <button
+              type="button"
+              onClick={() => setVehicleType('bike')}
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-montserrat font-semibold text-sm transition-all ${
+                vehicleType === 'bike'
+                  ? 'bg-teal text-white shadow-md scale-105'
+                  : 'bg-mint/40 text-teal-dark hover:bg-mint/60'
+              }`}
+            >
+              <Bike className="w-4 h-4" />
+              Two-Wheeler (Bike Rate Chart)
+            </button>
+          </div>
+
           <div className="overflow-x-auto rounded-2xl border border-teal/20 shadow-sm">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-teal-dark text-white font-montserrat text-xs md:text-sm uppercase tracking-wider">
-                  <th className="p-4 md:p-5">Engine Capacity (CC)</th>
-                  <th className="p-4 md:p-5">Popular Models</th>
-                  <th className="p-4 md:p-5">Base TP Rate</th>
-                  <th className="p-4 md:p-5">Total Payable (GST 18%)</th>
-                  <th className="p-4 md:p-5">Status</th>
+                  <th className="p-4 md:p-5">{vehicleType === 'car' ? 'Car Engine Capacity (CC)' : 'Bike Engine Capacity (CC)'}</th>
+                  <th className="p-4 md:p-5">{vehicleType === 'car' ? 'Popular Car Models' : 'Popular Bike Models'}</th>
+                  <th className="p-4 md:p-5">1-Year Third Party Premium</th>
+                  <th className="p-4 md:p-5">GST (18%)</th>
+                  <th className="p-4 md:p-5">Total Estimated Payable</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-teal/10 font-opensans text-sm">
-                {twoWheelerRates.map((row) => (
+                {(vehicleType === 'car' ? fourWheelerRates : twoWheelerRates).map((row) => (
                   <tr key={row.cc} className="hover:bg-mint/20 transition-colors">
                     <td className="p-4 md:p-5 font-semibold text-teal-dark">{row.cc}</td>
                     <td className="p-4 md:p-5 text-slate-600">{row.models}</td>
                     <td className="p-4 md:p-5 text-slate-700">{row.tpRate}</td>
+                    <td className="p-4 md:p-5 text-slate-500">
+                      {vehicleType === 'car'
+                        ? row.cc.includes('1,000') && !row.cc.includes('Less')
+                          ? '₹615'
+                          : row.cc.includes('Exceeding')
+                          ? '₹1,421'
+                          : row.cc.includes('Electric')
+                          ? '₹320 - ₹523'
+                          : '₹377'
+                        : row.cc.includes('Less')
+                        ? '₹97'
+                        : row.cc.includes('75')
+                        ? '₹129'
+                        : row.cc.includes('150')
+                        ? '₹246'
+                        : '₹505'}
+                    </td>
                     <td className="p-4 md:p-5 font-bold text-teal text-base">{row.totalWithGst}</td>
-                    <td className="p-4 md:p-5 text-xs font-semibold text-slate-500">{row.fineSaved}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+
+          <p className="font-opensans text-xs text-slate-400 mt-4 text-center italic">
+            (Note: In rates ke alawa Personal Accident Cover (PA Cover) mandatory hota hai agar aapke paas pehle se ₹15 lakh ka active individual PA cover nahi hai.)
+          </p>
         </div>
       </section>
 

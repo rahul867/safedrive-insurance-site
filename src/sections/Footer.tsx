@@ -13,6 +13,7 @@ const quickLinks = [
   { label: 'Reviews', href: '#reviews' },
   { label: 'Claim Help', href: '#claim-help' },
   { label: 'Meerut Hub', href: '/meerut' },
+  { label: 'Car Insurance Meerut', href: '/meerut/car-insurance' },
   { label: 'Guides', href: '#guides' },
 ];
 

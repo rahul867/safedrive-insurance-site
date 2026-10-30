@@ -49,6 +49,7 @@ export default defineConfig({
         meerut: path.resolve(__dirname, 'meerut/index.html'),
         'meerut-expired': path.resolve(__dirname, 'meerut/expired-insurance-renewal/index.html'),
         'meerut-rates': path.resolve(__dirname, 'meerut/zero-dep-third-party-rates/index.html'),
+        'meerut-car': path.resolve(__dirname, 'meerut/car-insurance/index.html'),
         ...blogInputs(),
       },
     },

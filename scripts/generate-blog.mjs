@@ -173,8 +173,7 @@ const footerHtml = `
         <div>
           <h2 class="font-montserrat font-semibold text-sm text-white uppercase tracking-wider mb-4">Contact</h2>
           <ul class="space-y-3">
-            <li><a href="${WHATSAPP}" target="_blank" rel="noopener noreferrer" class="font-opensans text-sm text-white/70 hover:text-white">WhatsApp: +91 80770 80985</a></li>
-            <li><a href="tel:+919899054206" class="font-opensans text-sm text-white/70 hover:text-white">Call: +91 98990 54206</a></li>
+            <li><a href="${WHATSAPP}" target="_blank" rel="noopener noreferrer" class="font-opensans text-sm text-white/70 hover:text-white">WhatsApp / Call: +91 80770 80985</a></li>
             <li><a href="mailto:contact@safedriveinsurance.in" class="font-opensans text-sm text-white/70 hover:text-white">contact@safedriveinsurance.in</a></li>
             <li class="font-opensans text-sm text-white/70">Gurgaon &bull; Delhi-NCR &bull; Meerut</li>
           </ul>
@@ -264,6 +263,7 @@ function readPosts() {
         draft: data.draft === true,
         date: formatDate(data.date || fs.statSync(path.join(CONTENT_DIR, file)).mtime),
         minutes: readingMinutes(body),
+        rawBody: body,
         html: marked.parse(body),
       };
     })
@@ -271,44 +271,150 @@ function readPosts() {
     .sort((a, b) => (a.date.iso < b.date.iso ? 1 : -1));
 }
 
-function postPage(post) {
-  const url = `${SITE}/blog/${post.slug}`;
-  const ogImage = post.image ? `${SITE}${post.image}` : '';
+function extractFaqs(body) {
+  const faqs = [];
+  // Look for FAQ sections: ### Q: ... or ### Question ... or numbered questions
+  const faqRegex = /###\s+(?:Q:?|Sawaal:?|Question:?)?\s*(.+?\?)\r?\n+([\s\S]+?)(?=(?:#{2,3}\s+|---|---|$))/gi;
+  let match;
+  while ((match = faqRegex.exec(body)) !== null) {
+    const question = match[1].trim().replace(/^\d+\.\s*/, '');
+    const rawAnswer = match[2].trim();
+    // Strip markdown formatting for schema answer
+    const answer = rawAnswer
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/[*_#`>-]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (question && answer && question.endsWith('?')) {
+      faqs.push({ question, answer });
+    }
+  }
+  return faqs;
+}
 
-  const jsonLd = `    {
-      "@context": "https://schema.org",
+function postPage(post, allPosts = []) {
+  const url = `${SITE}/blog/${post.slug}`;
+  const ogImage = post.image ? `${SITE}${post.image}` : `${SITE}/hero-agent.jpg`;
+  const faqs = extractFaqs(post.rawBody || '');
+
+  // Schema graph with BlogPosting, BreadcrumbList, and FAQPage (if faqs present)
+  const schemaGraph = [
+    {
       "@type": "BlogPosting",
-      "headline": "${escapeJson(post.title)}",
-      "description": "${escapeJson(post.description)}",
-      "datePublished": "${post.date.iso}",
-      "dateModified": "${post.date.iso}",
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "${url}" },${
-        ogImage ? `\n      "image": "${ogImage}",` : ''
-      }
-      "author": { "@type": "Organization", "name": "SafeDrive Insurance", "url": "${SITE}/" },
+      "@id": `${url}#article`,
+      "headline": post.title,
+      "description": post.description,
+      "datePublished": post.date.iso,
+      "dateModified": post.date.iso,
+      "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+      "image": ogImage,
+      "author": {
+        "@type": "Person",
+        "name": "Rahul Panchal",
+        "jobTitle": "Certified Motor Insurance Advisor",
+        "url": `${SITE}/`
+      },
       "publisher": {
         "@type": "Organization",
         "name": "SafeDrive Insurance",
-        "url": "${SITE}/",
-        "logo": { "@type": "ImageObject", "url": "${SITE}/safedrive-logo.png" }
+        "url": `${SITE}/`,
+        "logo": { "@type": "ImageObject", "url": `${SITE}/safedrive-logo.png` }
       },
       "inLanguage": "en-IN"
-    }`;
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumb`,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${SITE}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": `${SITE}/blog`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": post.title,
+          "item": url
+        }
+      ]
+    }
+  ];
+
+  if (faqs.length > 0) {
+    schemaGraph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": f.answer
+        }
+      }))
+    });
+  }
+
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": schemaGraph
+  }, null, 2);
+
+  const related = allPosts
+    .filter((p) => p.slug !== post.slug)
+    .slice(0, 3);
+
+  const relatedHtml = related.length
+    ? `
+      <section class="mt-14 pt-10 border-t border-teal/15">
+        <h3 class="font-montserrat font-bold text-2xl text-teal-dark mb-6">Aapke Kaam Ki Aur Baatein (Related Guides)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          ${related
+            .map(
+              (r) => `
+            <a href="/blog/${r.slug}" class="block p-5 rounded-xl border border-teal/15 hover:border-teal/40 bg-mint/30 transition-all hover:-translate-y-1">
+              ${r.category ? `<span class="text-[10px] font-bold text-teal uppercase tracking-wider">${escapeHtml(r.category)}</span>` : ''}
+              <h4 class="font-montserrat font-bold text-[16px] text-teal-dark mt-1 line-clamp-2">${escapeHtml(r.title)}</h4>
+              <p class="font-opensans text-[13px] text-slate-500 mt-2 line-clamp-2">${escapeHtml(r.description)}</p>
+              <span class="inline-block mt-3 font-montserrat font-semibold text-xs text-teal hover:underline">Poora padhein &rarr;</span>
+            </a>`
+            )
+            .join('\n')}
+        </div>
+      </section>`
+    : '';
 
   const body = `${headerHtml}
-    <main class="max-w-[820px] mx-auto px-4 md:px-6 pt-12 pb-4">
-      <a href="/blog" class="font-montserrat font-semibold text-sm text-teal hover:underline">&larr; Sab posts</a>
-      ${post.category ? `<p class="font-montserrat font-semibold text-xs uppercase tracking-[0.12em] text-teal mt-6">${escapeHtml(post.category)}</p>` : ''}
+    <main class="max-w-[820px] mx-auto px-4 md:px-6 pt-10 pb-4">
+      <nav aria-label="Breadcrumb" class="text-xs text-slate-400 mb-5 flex items-center gap-1.5 flex-wrap">
+        <a href="/" class="hover:underline text-teal">Home</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:underline text-teal">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-slate-600 font-medium">${escapeHtml(post.title)}</span>
+      </nav>
+
+      ${post.category ? `<p class="font-montserrat font-semibold text-xs uppercase tracking-[0.12em] text-teal mt-2">${escapeHtml(post.category)}</p>` : ''}
       <h1 class="font-montserrat font-bold text-3xl md:text-[40px] leading-[1.2] text-teal-dark mt-3">${escapeHtml(post.title)}</h1>
-      <p class="font-opensans text-sm text-slate-400 mt-3">
+      <p class="font-opensans text-sm text-slate-400 mt-3 flex items-center gap-2">
+        <span>By <strong>Rahul Panchal</strong></span> &bull;
         <time datetime="${post.date.iso}">${post.date.display}</time> &bull; ${post.minutes} min read
       </p>
-      ${post.description ? `<p class="font-opensans text-[17px] text-slate-500 mt-5 leading-relaxed">${escapeHtml(post.description)}</p>` : ''}
+      ${post.description ? `<p class="font-opensans text-[17px] text-slate-600 mt-5 leading-relaxed bg-teal/5 p-4 rounded-xl border-l-4 border-teal">${escapeHtml(post.description)}</p>` : ''}
       ${post.image ? `<figure class="mt-8">${imageTag(post.image, post.imageAlt, { lazy: false, className: 'w-full rounded-2xl' })}</figure>` : ''}
-      <article class="post-body mt-8">
+      <article class="post-body mt-8 prose prose-teal max-w-none">
 ${post.html}
       </article>
       ${ctaHtml}
+      ${relatedHtml}
     </main>
 ${footerHtml}`;
 
@@ -368,16 +474,20 @@ ${footerHtml}`;
 }
 
 function writeSitemap(posts) {
+  const today = new Date().toISOString().slice(0, 10);
   const urls = [
-    { loc: `${SITE}/`, priority: '1.0', changefreq: 'monthly', lastmod: '2026-08-09' },
-    { loc: `${SITE}/blog`, priority: '0.8', changefreq: 'daily', lastmod: posts[0]?.date.iso || '2026-08-14' },
-    { loc: `${SITE}/careers`, priority: '0.6', changefreq: 'monthly', lastmod: '2026-08-09' },
-    { loc: `${SITE}/privacy`, priority: '0.3', changefreq: 'yearly', lastmod: '2026-08-14' },
+    { loc: `${SITE}/`, priority: '1.0', changefreq: 'daily', lastmod: today },
+    { loc: `${SITE}/meerut`, priority: '0.95', changefreq: 'daily', lastmod: today },
+    { loc: `${SITE}/meerut/expired-insurance-renewal`, priority: '0.9', changefreq: 'daily', lastmod: today },
+    { loc: `${SITE}/meerut/zero-dep-third-party-rates`, priority: '0.9', changefreq: 'daily', lastmod: today },
+    { loc: `${SITE}/blog`, priority: '0.9', changefreq: 'daily', lastmod: today },
+    { loc: `${SITE}/careers`, priority: '0.6', changefreq: 'monthly', lastmod: today },
+    { loc: `${SITE}/privacy`, priority: '0.3', changefreq: 'yearly', lastmod: today },
     ...posts.map((p) => ({
       loc: `${SITE}/blog/${p.slug}`,
-      priority: '0.7',
-      changefreq: 'monthly',
-      lastmod: p.date.iso,
+      priority: '0.8',
+      changefreq: 'weekly',
+      lastmod: p.date.iso || today,
     })),
   ];
 
@@ -410,7 +520,7 @@ function main() {
   for (const post of posts) {
     const dir = path.join(OUT_DIR, post.slug);
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'index.html'), postPage(post), 'utf8');
+    fs.writeFileSync(path.join(dir, 'index.html'), postPage(post, posts), 'utf8');
   }
 
   writeSitemap(posts);

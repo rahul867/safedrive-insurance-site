@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MessageCircle, Mail, MapPin, Phone } from 'lucide-react';
+import { MessageCircle, Mail, MapPin } from 'lucide-react';
 import { contact } from '../config/contact';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -12,6 +12,8 @@ const quickLinks = [
   { label: 'How It Works', href: '#how-it-works' },
   { label: 'Reviews', href: '#reviews' },
   { label: 'Claim Help', href: '#claim-help' },
+  { label: 'Meerut Hub', href: '/meerut' },
+  { label: 'Guides', href: '#guides' },
 ];
 
 export default function Footer() {
@@ -130,17 +132,8 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 font-opensans text-sm text-white/70 hover:text-white transition-colors duration-200"
                 >
-                  <MessageCircle className="w-4 h-4" />
-                  WhatsApp: {contact.whatsappDisplay}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={contact.callHref}
-                  className="flex items-center gap-2 font-opensans text-sm text-white/70 hover:text-white transition-colors duration-200"
-                >
-                  <Phone className="w-4 h-4" />
-                  Call: {contact.callDisplay}
+                  <MessageCircle className="w-4 h-4 text-emerald-400" />
+                  WhatsApp / Call: {contact.whatsappDisplay}
                 </a>
               </li>
               <li>

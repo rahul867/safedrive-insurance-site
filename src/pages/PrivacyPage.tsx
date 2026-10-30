@@ -257,7 +257,7 @@ export default function PrivacyPage() {
               </a>
             </p>
             <p className="font-opensans text-[15px] text-slate-600">
-              WhatsApp:{' '}
+              WhatsApp / Phone:{' '}
               <a
                 href={contact.whatsappHref}
                 target="_blank"
@@ -265,15 +265,6 @@ export default function PrivacyPage() {
                 className="text-teal font-semibold hover:underline"
               >
                 {contact.whatsappDisplay}
-              </a>
-            </p>
-            <p className="font-opensans text-[15px] text-slate-600">
-              Phone:{' '}
-              <a
-                href={contact.callHref}
-                className="text-teal font-semibold hover:underline"
-              >
-                {contact.callDisplay}
               </a>
             </p>
           </div>

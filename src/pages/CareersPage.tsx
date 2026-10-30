@@ -361,7 +361,7 @@ export default function CareersPage() {
                   name="phone"
                   required
                   pattern="[0-9+ ]{10,15}"
-                  placeholder="98990 54206"
+                  placeholder="80770 80985"
                   className="w-full border-2 border-slate-200 rounded-lg px-4 py-2.5 font-opensans text-[15px] focus:border-teal focus:outline-none transition-colors"
                 />
               </div>

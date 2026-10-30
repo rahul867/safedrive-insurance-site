@@ -7,6 +7,7 @@ import ProductsSection from './sections/ProductsSection';
 import HowItWorksSection from './sections/HowItWorksSection';
 import ReviewsSection from './sections/ReviewsSection';
 import ClaimAssistanceSection from './sections/ClaimAssistanceSection';
+import BlogPreviewSection from './sections/BlogPreviewSection';
 import Footer from './sections/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -30,6 +31,7 @@ export default function App() {
         <HowItWorksSection />
         <ReviewsSection />
         <ClaimAssistanceSection />
+        <BlogPreviewSection />
       </main>
       <Footer />
     </div>

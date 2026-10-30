@@ -9,23 +9,23 @@ gsap.registerPlugin(ScrollTrigger);
 const steps = [
   {
     number: '01',
-    title: 'Details Share Karein',
-    description: 'WhatsApp pe apna vehicle number, city, aur insurance type bhejein.',
+    title: 'RC Photo Bhejiye',
+    description: 'WhatsApp pe gaadi ki RC photo share karein — koi lamba form ya self-fill ka jhanjhat nahi.',
   },
   {
     number: '02',
-    title: 'Instant Quote Milega',
-    description: '2 minutes mein aapko best premium options mil jaayenge - compare karein aur choose karein.',
+    title: 'Zero-Error Verification',
+    description: 'Hum engine, chassis number aur NCB verify karte hain taaki galat info ki wajah se claim reject na ho.',
   },
   {
     number: '03',
-    title: 'Payment Karein',
-    description: 'Secure online payment karein - receipt instant mil jaayegi. Koi hidden charges nahi.',
+    title: 'Best Quotes Compare',
+    description: '15+ top companies ke official lowest rates mein se apna pasandeeda plan chuniye.',
   },
   {
     number: '04',
-    title: 'Policy Delivered!',
-    description: 'Minutes mein policy document aapke WhatsApp pe - original, verifiable, ready to use.',
+    title: '5 Min Mein Ghar Baithe Policy',
+    description: 'Original verifiable policy PDF direct WhatsApp pe aur VAHAN portal par instant active!',
   },
 ];
 
@@ -78,8 +78,8 @@ export default function HowItWorksSection() {
         <div className="section-heading">
           <SectionHeading
             label="PROCESS"
-            title="4 Steps Mein Policy Ready"
-            body="Itna easy hai ki aapko sochna nahi parega - bas details do, quote lo, policy lo!"
+            title="Ghar Baithe 5 Minute Mein Policy Ready"
+            body="5,000+ vehicle owners ka bharosa — zero form filling, 100% verified RC details, aur claim rejection se complete protection."
           />
         </div>
 

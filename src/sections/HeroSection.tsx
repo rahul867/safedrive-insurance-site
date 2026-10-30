@@ -41,7 +41,7 @@ export default function HeroSection() {
         <div ref={textRef} className="w-full md:w-1/2 md:max-w-[530px] text-center md:text-left z-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal/10 border border-teal/20 text-teal text-xs font-bold uppercase tracking-wider mb-5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            Fastest Motor Insurance &bull; Gurgaon &bull; Delhi-NCR &bull; Meerut
+            5,000+ Happy Customers &bull; 5 Min Ghar Baithe Insurance
           </div>
 
           <h1 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-[46px] leading-[1.12] text-teal-dark">
@@ -53,7 +53,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="font-opensans text-base md:text-lg text-slate-600 mt-5 leading-relaxed">
-            Third Party se Zero Dep tak — instant policy on WhatsApp across 15+ top insurers, 90-day NCB retention aur local cashless claim assistance.
+            Ghar baithe sirf 5 minute mein verified policy. Online form mein galat variant, engine number ya wrong NCB fill hone se bachiye — hum har detail RC se verify karke dete hain taaki claim ke waqt zero problem aaye.
           </p>
 
           <div className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-3.5">
@@ -80,11 +80,21 @@ export default function HeroSection() {
           <div className="mt-8 pt-6 border-t border-teal/15 flex items-center justify-center md:justify-start gap-6 sm:gap-8">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-lg bg-teal/10 text-teal flex items-center justify-center flex-shrink-0">
+                <Award className="w-4 h-4" />
+              </div>
+              <div className="text-left">
+                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">5,000+</span>
+                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Happy Customers</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-teal/10 text-teal flex items-center justify-center flex-shrink-0">
                 <Zap className="w-4 h-4" />
               </div>
               <div className="text-left">
-                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">2 Mins</span>
-                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Digital Policy</span>
+                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">5 Mins</span>
+                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Ghar Baithe Policy</span>
               </div>
             </div>
 
@@ -93,18 +103,8 @@ export default function HeroSection() {
                 <ShieldCheck className="w-4 h-4" />
               </div>
               <div className="text-left">
-                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">100% Cashless</span>
-                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Local Garages</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-teal/10 text-teal flex items-center justify-center flex-shrink-0">
-                <Award className="w-4 h-4" />
-              </div>
-              <div className="text-left">
-                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">Up to 50%</span>
-                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">NCB Discount</span>
+                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">100% Claim Safe</span>
+                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Zero Wrong Info</span>
               </div>
             </div>
           </div>

@@ -8,32 +8,32 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    quote: 'Pehle darr lagta tha online insurance se - lekin SafeDrive ne 5 minute mein policy bheji. Full trust!',
+    quote: 'Online portal pe khud form bharte waqt hamesha darr lagta tha ki galat info fill ho gayi toh claim fas jaayega. SafeDrive ne RC dekhkar 5 min mein verified policy bhej di!',
     name: 'Rahul S.',
     location: 'Gurgaon',
   },
   {
-    quote: 'Claim help mil gayi jab meri bike ka accident hua. Baaki agents toh policy bechke gayab ho jaate hain.',
-    name: 'Priya M.',
-    location: 'Delhi',
-  },
-  {
-    quote: 'Zero Dep ka samajh nahi aata tha - inhone itna simple explain kiya ki bas click karke le liya.',
-    name: 'Amit K.',
-    location: 'Noida',
-  },
-  {
-    quote: 'Renewal ka reminder aaya WhatsApp pe - ek click mein ho gaya. Kitna easy hai yaar!',
+    quote: 'Meri bike ka Meerut mein accident hua tha. SafeDrive se policy thi toh surveyor ne ek sawal nahi kiya, seedha cashless repair mila. 100% genuine!',
     name: 'Sneha R.',
     location: 'Meerut',
   },
   {
-    quote: 'Price compare kiya Policybazaar pe - same rate yahan se liya aur help bhi mili.',
+    quote: 'Ghar baithe baithe sirf WhatsApp pe photo bheji aur 5 minute mein original policy mil gayi. Na koi lambe form, na koi call center ka chakkar.',
     name: 'Vikram T.',
-    location: 'Gurgaon',
+    location: 'Delhi-NCR',
   },
   {
-    quote: 'Office se nikalte time form fill kiya, ghar pahunchne tak policy aa gayi. Speed!',
+    quote: 'Pehle dealer se mehnge mein leta tha. Inhone showroom se 30% saste mein wahi same company ka Zero Dep cover ghar baithe arrange karwa diya.',
+    name: 'Amit K.',
+    location: 'Noida',
+  },
+  {
+    quote: 'Previous NCB verify karke pura 50% discount dilwaya. Agar online khud karta toh galti se zero NCB ho jaata aur 6,000 ka nuksan hota.',
+    name: 'Priya M.',
+    location: 'Delhi',
+  },
+  {
+    quote: 'Office se nikalte time message kiya, 5 minute mein policy WhatsApp pe aa gayi. Superfast aur reliable service!',
     name: 'Neha B.',
     location: 'Faridabad',
   },
@@ -88,8 +88,8 @@ export default function ReviewsSection() {
         <div className="section-heading">
           <SectionHeading
             label="REVIEWS"
-            title="500+ Happy Riders"
-            body="Delhi-NCR aur Meerut ke customers ki feedback - yeh suniye unki zubaani."
+            title="5,000+ Happy Vehicle Owners"
+            body="Ghar baithe 5 minute mein verified policy aur zero claim rejection guarantee — padhiye Gurgaon, Delhi-NCR aur Meerut ke customers ka real experience."
           />
         </div>
 

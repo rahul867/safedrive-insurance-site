@@ -230,6 +230,17 @@ ${jsonLd ? `    <script type="application/ld+json">\n${jsonLd}\n    </script>` :
   </head>
   <body class="bg-white">
 ${body}
+    <script>
+      function handleExpiryCheck(e, form) {
+        e.preventDefault();
+        var name = form.customerName.value.trim();
+        var vehicle = form.vehicleNumber.value.trim().toUpperCase();
+        if (!name || !vehicle) return;
+        var text = 'Hi SafeDrive! Please check my bike insurance status:\n\nName: ' + name + '\nVehicle Number: ' + vehicle;
+        var url = 'https://wa.me/918077080985?text=' + encodeURIComponent(text);
+        window.open(url, '_blank');
+      }
+    </script>
     <script type="module" src="/src/blog.ts"></script>
     <script src="https://console.authkey.io/js/main.js" id="authkey-chat-widget" widget-id="${CHAT_WIDGET_ID}" defer></script>
   </body>
@@ -260,6 +271,7 @@ function readPosts() {
         category: data.category || '',
         image: data.image || '',
         imageAlt: data.imageAlt || data.title || '',
+        keywords: data.keywords || '',
         draft: data.draft === true,
         date: formatDate(data.date || fs.statSync(path.join(CONTENT_DIR, file)).mtime),
         minutes: readingMinutes(body),
@@ -315,11 +327,14 @@ function postPage(post, allPosts = []) {
         "url": `${SITE}/`
       },
       "publisher": {
-        "@type": "Organization",
+        "@type": ["InsuranceAgency", "Organization"],
         "name": "SafeDrive Insurance",
         "url": `${SITE}/`,
+        "telephone": "+91 80770 80985",
+        "areaServed": "IN",
         "logo": { "@type": "ImageObject", "url": `${SITE}/safedrive-logo.png` }
       },
+      ...(post.keywords ? { "keywords": post.keywords } : {}),
       "inLanguage": "en-IN"
     },
     {

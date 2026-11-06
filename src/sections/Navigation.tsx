@@ -82,7 +82,7 @@ export default function Navigation() {
             rel="noopener noreferrer"
             className="font-montserrat font-semibold text-sm text-white bg-teal px-6 py-2.5 rounded-full hover:bg-teal-hover hover:scale-[1.02] transition-all duration-200 inline-block"
           >
-            Get Quote
+            Get Quote Today
           </a>
         </div>
 
@@ -116,7 +116,7 @@ export default function Navigation() {
               rel="noopener noreferrer"
               className="font-montserrat font-semibold text-sm text-white bg-teal px-6 py-3 rounded-full text-center mt-2"
             >
-              Get Quote
+              Get Quote Today
             </a>
           </div>
         </div>

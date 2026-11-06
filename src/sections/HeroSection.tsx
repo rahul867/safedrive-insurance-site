@@ -41,19 +41,19 @@ export default function HeroSection() {
         <div ref={textRef} className="w-full md:w-1/2 md:max-w-[530px] text-center md:text-left z-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal/10 border border-teal/20 text-teal text-xs font-bold uppercase tracking-wider mb-5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            5,000+ Happy Customers &bull; 5 Min Ghar Baithe Insurance
+            Top-Rated Motor Advisory &bull; Protect Your Vehicle Today
           </div>
 
           <h1 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-[46px] leading-[1.12] text-teal-dark">
-            Bike & Car Insurance
+            Top Car & Bike Insurance
             <br />
-            <span className="text-teal">Jo Minutes Mein Mile,</span>
+            <span className="text-teal">5 Min Instant Policy</span>
             <br />
-            Days Mein Nahi!
+            & Verified Claims
           </h1>
 
           <p className="font-opensans text-base md:text-lg text-slate-600 mt-5 leading-relaxed">
-            Ghar baithe sirf 5 minute mein verified policy. Online form mein galat variant, engine number ya wrong NCB fill hone se bachiye — hum har detail RC se verify karke dete hain taaki claim ke waqt zero problem aaye.
+            Compare 15+ top insurers today and get instant policy delivery in 5 minutes. Har detail RC se 100% verify karke dete hain taaki claim ke waqt zero rejection ho. Doorstep cashless garage assistance included.
           </p>
 
           <div className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-3.5">
@@ -64,7 +64,7 @@ export default function HeroSection() {
               className="inline-flex items-center justify-center gap-2 font-montserrat font-bold text-sm text-white bg-coral px-7 py-3.5 rounded-full hover:bg-coral-hover hover:scale-[1.02] shadow-lg transition-all duration-200"
             >
               <MessageCircle className="w-4 h-4" />
-              WhatsApp pe Quote Lein
+              Get Quote Today on WhatsApp
             </a>
 
             <a
@@ -72,7 +72,7 @@ export default function HeroSection() {
               className="inline-flex items-center justify-center gap-2 font-montserrat font-semibold text-sm text-teal-dark bg-mint/50 border border-teal/20 px-6 py-3.5 rounded-full hover:bg-mint transition-all duration-200"
             >
               <Phone className="w-4 h-4 text-teal" />
-              Call: {contact.callDisplay}
+              Call Today for Instant Quote
             </a>
           </div>
 
@@ -84,7 +84,7 @@ export default function HeroSection() {
               </div>
               <div className="text-left">
                 <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">5,000+</span>
-                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Happy Customers</span>
+                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Happy Drivers</span>
               </div>
             </div>
 
@@ -93,8 +93,8 @@ export default function HeroSection() {
                 <Zap className="w-4 h-4" />
               </div>
               <div className="text-left">
-                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">5 Mins</span>
-                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Ghar Baithe Policy</span>
+                <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">15+ Insurers</span>
+                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">5-Min Delivery</span>
               </div>
             </div>
 
@@ -104,7 +104,7 @@ export default function HeroSection() {
               </div>
               <div className="text-left">
                 <span className="block font-montserrat font-bold text-xs text-teal-dark leading-tight">100% Claim Safe</span>
-                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">Zero Wrong Info</span>
+                <span className="block font-opensans text-[11px] text-slate-500 leading-tight">RC-Verified Policy</span>
               </div>
             </div>
           </div>
